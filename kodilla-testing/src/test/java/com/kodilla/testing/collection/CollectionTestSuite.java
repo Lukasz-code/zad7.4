@@ -25,7 +25,7 @@ public class CollectionTestSuite {
         ArrayList<Integer> oddNumbers = exterminator.exterminate(numbers);
         ArrayList<Integer> evenNumbers = new ArrayList<Integer>();
         //Then
-        Assert.assertEquals(oddNumbers, evenNumbers);
+        Assert.assertEquals(evenNumbers, oddNumbers);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class CollectionTestSuite {
         evenNumbers.add(2);
         evenNumbers.add(4);
         //Then
-        Assert.assertEquals(oddNumbers, evenNumbers);
+        Assert.assertEquals(evenNumbers, oddNumbers);
         }
     }
 
