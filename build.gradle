@@ -17,8 +17,12 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.0'
+    testCompile'junit:junit:4.12'
 }
 
 test {
     useJUnitPlatform()
+
 }
+
