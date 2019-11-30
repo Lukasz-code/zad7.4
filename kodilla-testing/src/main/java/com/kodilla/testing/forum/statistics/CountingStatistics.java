@@ -2,35 +2,39 @@ package com.kodilla.testing.forum.statistics;
 
 public class CountingStatistics{
 
-        private int numberOfPosts;
-        private int numberOfUsers;
-        private int numberOfComments;
-        private int evenNrPostsPerUsers;
-        private int evenNrCommentsPerUsers;
-        private int evenNrCommentsPerPosts;
+        private final Statistics statistics;
+        private double numberOfPosts;
+        private double numberOfUsers;
+        private double numberOfComments;
+        private double evenNrPostsPerUsers;
+        private double evenNrCommentsPerUsers;
+        private double evenNrCommentsPerPosts;
 
+    public CountingStatistics(Statistics statistics) {
+        this.statistics = statistics;
+    }
 
-    public int getNumberOfPosts() {
+    public double getNumberOfPosts() {
         return numberOfPosts;
     }
 
-    public int getNumberOfUsers() {
+    public double getNumberOfUsers() {
         return numberOfUsers;
     }
 
-    public int getNumberOfComments() {
+    public double getNumberOfComments() {
         return numberOfComments;
     }
 
-    public int getEvenNrPostsPerUsers() {
+    public double getEvenNrPostsPerUsers() {
         return evenNrPostsPerUsers;
     }
 
-    public int getEvenNrCommentsPerUsers() {
+    public double getEvenNrCommentsPerUsers() {
         return evenNrCommentsPerUsers;
     }
 
-    public int getEvenNrCommentsPerPosts() {
+    public double getEvenNrCommentsPerPosts() {
         return evenNrCommentsPerPosts;
     }
 
@@ -39,8 +43,24 @@ public class CountingStatistics{
         this.numberOfPosts = statistics.postsCount();
         this.numberOfUsers = statistics.usersNames().size();
         this.numberOfComments = statistics.commentsCount();
-        this.evenNrPostsPerUsers = numberOfPosts / numberOfUsers;
-        this.evenNrCommentsPerUsers = numberOfComments / numberOfUsers;
-        this.evenNrCommentsPerPosts = numberOfComments / numberOfPosts;
+
+
+        if (numberOfUsers == 0) {
+            evenNrPostsPerUsers = 0.0;
+        } else {
+            this.evenNrPostsPerUsers = numberOfPosts / numberOfUsers;
+        }
+
+        if (numberOfUsers == 0) {
+            evenNrCommentsPerUsers = 0.0;
+        } else {
+            this.evenNrCommentsPerUsers = numberOfComments / numberOfUsers;
+        }
+
+        if (numberOfPosts == 0) {
+            evenNrCommentsPerPosts = 0.0;
+        } else {
+            this.evenNrCommentsPerPosts = numberOfComments / numberOfPosts;
+        }
     }
-            }
+}
