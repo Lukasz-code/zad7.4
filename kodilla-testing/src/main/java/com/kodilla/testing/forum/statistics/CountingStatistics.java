@@ -2,17 +2,12 @@ package com.kodilla.testing.forum.statistics;
 
 public class CountingStatistics{
 
-        private final Statistics statistics;
         private double numberOfPosts;
         private double numberOfUsers;
         private double numberOfComments;
         private double evenNrPostsPerUsers;
         private double evenNrCommentsPerUsers;
         private double evenNrCommentsPerPosts;
-
-    public CountingStatistics(Statistics statistics) {
-        this.statistics = statistics;
-    }
 
     public double getNumberOfPosts() {
         return numberOfPosts;
