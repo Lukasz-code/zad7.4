@@ -3,6 +3,7 @@ package com.kodilla.steam;
 import com.kodilla.steam.forumuser.Forum;
 import com.kodilla.steam.forumuser.ForumUser;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ public class SteamMain {
 
         Map<Integer, ForumUser> forumUsers = forum.getUserList().stream()
                 .filter(forumUser -> forumUser.getSex() == 'M')
-                .filter(forumUser -> forumUser.getBirthDate().getYear() < 2000)
+                .filter(forumUser -> LocalDate.now().getYear() - forumUser.getBirthDate().getYear() > 20)
                 .filter(forumUser -> forumUser.getPostsNumber() > 0)
                 .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
 
