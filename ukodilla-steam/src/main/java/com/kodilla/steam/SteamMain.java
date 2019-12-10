@@ -1,16 +1,26 @@
 package com.kodilla.steam;
 
-import com.kodilla.steam.beautifier.PoemBeautifier;
+import com.kodilla.steam.forumuser.Forum;
+import com.kodilla.steam.forumuser.ForumUser;
 
-import javax.swing.text.StyledEditorKit;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SteamMain {
 
     public static void main(String[] args) {
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-        poemBeautifier.beautify(" Przykładowy tekst ", (toBeautify) -> "AVA" + toBeautify + "AVA" );
-        poemBeautifier.beautify(" Przykładowy tekst ", (toBeautify) -> toBeautify.toUpperCase());
-        poemBeautifier.beautify(" Przykladowy Tekst ", (toBeautify) -> toBeautify.toLowerCase());
-        poemBeautifier.beautify(" Przykladowy tekst ", (toBeautify) -> (char)27 + toBeautify + (char)27) ;
+
+        Forum forum = new Forum();
+
+        Map<Integer, ForumUser> forumUsers = forum.getUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getBirthDate().getYear() < 2000)
+                .filter(forumUser -> forumUser.getPostsNumber() > 0)
+                .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
+
+        System.out.println("number of filtered positions : " + forumUsers.size());
+        forumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ":" + entry.getValue())
+                .forEach(System.out::println);
     }
 }
