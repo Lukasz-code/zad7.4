@@ -147,23 +147,26 @@ public class BoardTestSuite {
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
 
-        long valueOfDays = project.getTaskLists().stream()
+        double value = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(n -> ChronoUnit.DAYS.between(n.getCreated(), LocalDate.now()))
-                .reduce(0L, Long::sum);
+                .mapToLong(i ->i)
+                .average()
+                .orElse(0);
 
-        long valueOfTasks = project.getTaskLists().stream()
+
+        /*long valueOfTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> t.getCreated())
                 .count();
 
-                int value = (int) (valueOfDays/valueOfTasks);
+                int value = (int) (valueOfDays/valueOfTasks);*/
 
 
         //Then
-        Assert.assertEquals(10, value);
+        Assert.assertEquals(10, value, 0.0);
 
     }
 }
